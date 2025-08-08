@@ -375,7 +375,7 @@ body {
 }
 
 .btn-primary {
-    background: #1e293b;
+    background: #1868e9;
     color: white;
     border: none;
     padding: 12px 24px;
@@ -384,8 +384,10 @@ body {
     font-size: 0.9rem;
     cursor: pointer;
     transition: all 0.3s ease;
-    width: 100%;
+    width: 20%;
     margin-top: auto;
+    display: block;
+    text-align: center;
 }
 
 .btn-primary:hover {
@@ -1239,6 +1241,7 @@ body {
     align-items: baseline;
     justify-content: center;
     gap: 4px;
+    flex-wrap: wrap;
 }
 
 .price-period {
@@ -1248,9 +1251,10 @@ body {
 }
 
 .price-note {
-    font-size: 0.85rem;
-    color: #64748b;
-    margin-bottom: 20px;
+    font-size: 0.75rem;
+    color: #94a3b8;
+    margin-left: 8px;
+    font-weight: 400;
 }
 
 .pricing-description {
@@ -1303,6 +1307,23 @@ body {
     font-size: 0.95rem;
     line-height: 1.5;
     margin: 0;
+}
+
+/* 计费方案按钮特殊样式 */
+#get-started-btn,
+#learn-more-btn,
+#contact-sales-btn {
+    background: #2563eb;
+    width: 30%;
+    margin: 0 auto;
+    margin-top: auto;
+}
+
+#get-started-btn:hover,
+#learn-more-btn:hover,
+#contact-sales-btn:hover {
+    background: #1d4ed8;
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
 }
 
 /* 页脚 */
@@ -1460,6 +1481,12 @@ body {
     .pricing-features li {
         font-size: 0.85rem;
         padding: 6px 0;
+    }
+    
+    #get-started-btn,
+    #learn-more-btn,
+    #contact-sales-btn {
+        width: 50%;
     }
     
     /* 轮播卡片移动端适配 */
