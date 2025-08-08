@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeSphere - 云端代码助手</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- 粒子效果容器 -->
+    <div class="particles-container" id="particles"></div>
+    
+    <!-- 鼠标跟随光效 -->
+    <div class="cursor-glow" id="cursorGlow"></div>
+
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-left">
+                <div class="nav-logo">
+                    <span class="logo-icon">&lt;/&gt;</span>
+                    <span class="logo-text">CodeSphere</span>
+                </div>
+                <a href="#home" id="nav-home" class="nav-item">首页</a>
+                <a href="docs.html" id="nav-solutions" class="nav-item">解决方案</a>
+                <a href="docs.html" id="nav-docs" class="nav-item">文档</a>
+            </div>
+            <div class="nav-right">
+                <a href="#console" id="nav-console" class="nav-item">控制台</a>
+                <a href="#login" class="login-btn" id="nav-login">登录/注册</a>
+                <select id="langSwitcher" onchange="switchLanguage(this.value)" class="nav-item">
+                    <option value="en">English</option>
+                    <option value="zh">中文</option>
+                </select>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主页横幅 -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-rocket"></i>
+                    <span id="hero-badge-text">通用型 AI 助手</span>
+                </div>
+                <h1 id="hero-title">CodeSphere是一款通用型 AI 助手</h1>
+                <div id="hero-desc">
+                    <p>零部署调用 Claude Code全能力，</p>
+                    <p class="hero-desc-line2">支持多智能体并行协作的云端开发平台</p>
+                </div>
+                <div class="hero-buttons">
+                    <button class="btn-primary" id="try-btn" onclick="scrollToDemo()">
+                        <i class="fas fa-play"></i>
+                        开始使用
+                    </button>
+                    <button class="btn-secondary" id="learn-btn" onclick="scrollToFeatures()">
+                        <i class="fas fa-info-circle"></i>
+                        观看演示
+                    </button>
+                    <button class="btn-secondary" id="docs-btn" onclick="window.open('docs.html', '_blank')">
+                        <i class="fas fa-book"></i>
+                        查看文档
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 产品优势 -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 id="features-title">产品优势</h2>
+                <p class="section-subtitle">Claude Code     开箱即用      云端运行     并行智能体</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-box-open"></i>
+                    </div>
+                    <h3 id="feature1-title">零配置开箱即用</h3>
+                    <p id="feature1-desc">内置 Claude Code 执行环境，用户无需每次申请 API Key 或部署本地环境。降低模型合规风险，提供企业级 SLA 保障。</p>
+                
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3 id="feature2-title">多智能体并行协作</h3>
+                    <p id="feature2-desc">支持异构工作流并行调度与多智能体协同决策，实现复杂任务的全链路自动化处理，显著提升工程吞吐量与交付质量。</p>
+                    
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3 id="feature3-title">自然语言交互体验</h3>
+                    <p id="feature3-desc">原生云端聊天窗口，支持自然语言驱动的任务编排。提供多模态可视化结果输出，如表格、图表、文档等。</p>
+                    
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 id="feature4-title">跨平台随时随地访问</h3>
+                    <p id="feature4-desc">与 IDE 解耦，浏览器即可使用，支持移动端访问。非技术用户可通过 Web 或移动端进行可视化操作。</p>
+                    
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-plug"></i>
+                    </div>
+                    <h3 id="feature5-title">灵活的企业级集成</h3>
+                    <p id="feature5-desc">开发者享受 SDK/CLI 深度集成，企业系统可通过 MCP 协议与内部平台集成。随时随地访问，灵活部署。</p>
+                    
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 id="feature6-title">企业级安全隔离</h3>
+                    <p id="feature6-desc">基于 AWS Firecracker 技术，每个任务在独立虚拟环境中运行。支持依赖安装、测试运行、代码构建，无需本地配置。</p>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 使用场景 -->
+    <section id="use-cases" class="use-cases">
+        <div class="container">
+            <div class="section-header">
+                <h2 id="use-cases-title">典型使用场景</h2>
+                <p class="section-subtitle">深入行业与场景，加速效能跃升</p>
+            </div>
+            <div class="use-cases-carousel">
+                <div class="carousel-container">
+                    <div class="carousel-track">
+                        <div class="use-case-card">
+                            <div class="use-case-icon">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <h3>代码分析与重构</h3>
+                            <p>上传现有代码，AI 智能分析代码质量，提供重构建议和优化方案。支持多种编程语言和框架。</p>
+                            <div class="use-case-benefits">
+                                <div class="benefit-item">
+                                    <i class="fas fa-check"></i>
+                                    <span>自动识别代码异味</span>
+                                </div>
+                                <div class="benefit-item">
+                                    <i class="fas fa-check"></i>
+                                    <span>提供重构建议</span>
+                                </div>
+                                <div class="benefit-item">
+                                    <i class="fas fa-check"></i>
+                                    <span>性能优化指导</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="use-case-card">
+                            <div class="use-case-icon">
+                                <i class="fas fa-bug"></i>
+                            </div>
+                            <h3>Bug 诊断与修复</h3>
+                            <p>快速定位和修复代码中的错误。AI 分析错误日志，提供针对性的修复方案和测试用例。</p>
+                            <div class="use-case-benefits">
+                                <div class="benefit-item">
+                                    <i class="fas fa-check"></i>
+                                    <span>智能错误分析</span>
+                                </div>
+                                <div class="benefit-item">
+                                    <i class="fas fa-check"></i>
+                                    <span>自动生成修复代码</span>
+                                </div>
+                                <div class="benefit-item">
+                                    <i class="fas fa-check"></i>
+                                    <span>回归测试验证</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="use-case-card">
+                            <div class="use-case-icon">
+                                <i class="fas fa-rocket"></i>
+                            </div>
+                            <h3>快速原型开发</h3>
+                            <p>基于需求描述快速生成代码原型。支持多种技术栈，让想法快速转化为可运行的代码。</p>
+                            <div class="use-case-benefits">
+                                <div class="benefit-item">
+                                    <i class="fas fa-check"></i>
+                                    <span>需求到代码转换</span>
+                                </div>
+                                <div class="benefit-item">
+                                    <i class="fas fa-check"></i>
+                                    <span>多技术栈支持</span>
+                                </div>
+                                <div class="benefit-item">
+                                    <i class="fas fa-check"></i>
+                                    <span>即时运行验证</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="use-case-card">
+                            <div class="use-case-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <h3>编程学习助手</h3>
+                            <p>为编程学习者提供智能辅导。解释代码逻辑，生成练习题，提供学习路径建议。</p>
+                            <div class="use-case-benefits">
+                                <div class="benefit-item">
+                                    <i class="fas fa-check"></i>
+                                    <span>代码逻辑解释</span>
+                                </div>
+                                <div class="benefit-item">
+                                    <i class="fas fa-check"></i>
+                                    <span>个性化学习路径</span>
+                                </div>
+                                <div class="benefit-item">
+                                    <i class="fas fa-check"></i>
+                                    <span>实时答疑解惑</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="use-case-card">
+                            <div class="use-case-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h3>团队协作开发</h3>
+                            <p>支持团队协作开发，代码审查，知识分享。集成 Git 工作流，提升团队开发效率。</p>
+                            <div class="use-case-benefits">
+                                <div class="benefit-item">
+                                    <i class="fas fa-check"></i>
+                                    <span>代码审查辅助</span>
+                                </div>
+                                <div class="benefit-item">
+                                    <i class="fas fa-check"></i>
+                                    <span>知识库构建</span>
+                                </div>
+                                <div class="benefit-item">
+                                    <i class="fas fa-check"></i>
+                                    <span>团队最佳实践</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="use-case-card">
+                            <div class="use-case-icon">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <h3>自动化测试</h3>
+                            <p>自动生成测试用例，执行单元测试和集成测试。确保代码质量和系统稳定性。</p>
+                            <div class="use-case-benefits">
+                                <div class="benefit-item">
+                                    <i class="fas fa-check"></i>
+                                    <span>智能测试生成</span>
+                                </div>
+                                <div class="benefit-item">
+                                    <i class="fas fa-check"></i>
+                                    <span>覆盖率分析</span>
+                                </div>
+                                <div class="benefit-item">
+                                    <i class="fas fa-check"></i>
+                                    <span>持续集成支持</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="use-case-card">
+                            <div class="use-case-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h3>产品需求分析</h3>
+                            <p>帮助产品经理分析用户需求，生成产品规格文档，设计功能原型，优化用户体验。</p>
+                            <div class="use-case-benefits">
+                                <div class="benefit-item">
+                                    <i class="fas fa-check"></i>
+                                    <span>需求文档生成</span>
+                                </div>
+                                <div class="benefit-item">
+                                    <i class="fas fa-check"></i>
+                                    <span>用户故事编写</span>
+                                </div>
+                                <div class="benefit-item">
+                                    <i class="fas fa-check"></i>
+                                    <span>原型设计建议</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="use-case-card">
+                            <div class="use-case-icon">
+                                <i class="fas fa-file-alt"></i>
+                            </div>
+                            <h3>技术文档编写</h3>
+                            <p>协助内容创作者编写技术文档，生成API文档，制作用户手册，提升文档质量。</p>
+                            <div class="use-case-benefits">
+                                <div class="benefit-item">
+                                    <i class="fas fa-check"></i>
+                                    <span>文档结构优化</span>
+                                </div>
+                                <div class="benefit-item">
+                                    <i class="fas fa-check"></i>
+                                    <span>技术内容生成</span>
+                                </div>
+                                <div class="benefit-item">
+                                    <i class="fas fa-check"></i>
+                                    <span>多语言支持</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="use-case-card">
+                            <div class="use-case-icon">
+                                <i class="fas fa-analytics"></i>
+                            </div>
+                            <h3>业务数据分析</h3>
+                            <p>支持业务分析师处理数据，生成分析报告，优化业务流程，提供决策支持。</p>
+                            <div class="use-case-benefits">
+                                <div class="benefit-item">
+                                    <i class="fas fa-check"></i>
+                                    <span>数据清洗处理</span>
+                                </div>
+                                <div class="benefit-item">
+                                    <i class="fas fa-check"></i>
+                                    <span>报表自动生成</span>
+                                </div>
+                                <div class="benefit-item">
+                                    <i class="fas fa-check"></i>
+                                    <span>业务洞察分析</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="use-case-card">
+                            <div class="use-case-icon">
+                                <i class="fas fa-headset"></i>
+                            </div>
+                            <h3>技术支持服务</h3>
+                            <p>为客服人员提供技术问题解答，故障诊断，解决方案推荐，提升服务质量。</p>
+                            <div class="use-case-benefits">
+                                <div class="benefit-item">
+                                    <i class="fas fa-check"></i>
+                                    <span>问题快速诊断</span>
+                                </div>
+                                <div class="benefit-item">
+                                    <i class="fas fa-check"></i>
+                                    <span>解决方案推荐</span>
+                                </div>
+                                <div class="benefit-item">
+                                    <i class="fas fa-check"></i>
+                                    <span>知识库更新</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 轮播控制按钮 -->
+                <div class="carousel-controls">
+                    <button class="carousel-btn prev-btn" onclick="prevSlide(true)">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="carousel-dots" id="carouselDots"></div>
+                    <button class="carousel-btn next-btn" onclick="nextSlide(true)">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 产品演示 -->
+    <section id="demo" class="demo">
+        <div class="container">
+            <h2 id="demo-title">产品演示</h2>
+            <div class="demo-container">
+                <!-- 左侧项目列表 -->
+                <div class="demo-sidebar">
+                    <div class="project-header">
+                        <button class="create-project-btn">
+                            <i class="fas fa-plus"></i>
+                            创建项目
+                        </button>
+                    </div>
+                    <div class="project-list">
+                        <div class="project-item">
+                            <div class="project-icon">
+                                <i class="fas fa-snowflake"></i>
+                            </div>
+                            <div class="project-info">
+                                <div class="project-title">生成一个菜市场的静态页面...</div>
+                                <div class="project-time">16:45</div>
+                            </div>
+                        </div>
+                        <div class="project-item">
+                            <div class="project-icon">
+                                <i class="fas fa-cube"></i>
+                            </div>
+                            <div class="project-info">
+                                <div class="project-title">会说话的猫精彩创意</div>
+                                <div class="project-time">5天前</div>
+                            </div>
+                        </div>
+                        <div class="project-item">
+                            <div class="project-icon">
+                                <i class="fas fa-cube"></i>
+                            </div>
+                            <div class="project-info">
+                                <div class="project-title">最近的热门电影是什么?</div>
+                                <div class="project-time">10天前</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 右侧聊天界面 -->
+                <div class="demo-main">
+                    <div class="chat-messages">
+                        <!-- AI思考过程消息 -->
+                        <div class="ai-message">
+                            <div class="ai-avatar">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <div class="ai-content">
+                                <div class="ai-header">
+                                    <span class="ai-name">&lt;/&gt; CodeSphere</span>
+                                </div>
+                                <div class="ai-text">
+                                    <p>我来为您生成一个菜市场的静态页面，以下是我的工作计划：</p>
+                                    <ol class="ai-plan">
+                                        <li>收集菜市场相关的图片素材</li>
+                                        <li>设计网页结构和内容规划</li>
+                                        <li>编写HTML和CSS代码实现静态页面</li>
+                                        <li>测试和优化网页效果</li>
+                                        <li>向您展示最终结果</li>
+                                    </ol>
+                                    <p class="ai-note">在我的工作过程中，你可以随时打断我，告诉我新的信息或者调整计划。</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- AI演示结果消息 -->
+                        <div class="ai-message">
+                            <div class="ai-avatar">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <div class="ai-content">
+                                <div class="ai-header">
+                                    <span class="ai-name">&lt;/&gt; CodeSphere</span>
+                                </div>
+                                <div class="ai-text">
+                                    <p>✅ 菜市场静态网页已生成完成！</p>
+                                    <div class="result-features">
+                                        <div class="feature-section">
+                                            <h4>💡 设计特色</h4>
+                                            <ul>
+                                                <li>现代简洁的设计风格</li>
+                                                <li>清新自然的绿色主题</li>
+                                                <li>响应式布局，支持桌面和移动端</li>
+                                                <li>丰富的交互效果和动画</li>
+                                            </ul>
+                                        </div>
+                                        <div class="feature-section">
+                                            <h4>📱 页面结构</h4>
+                                            <ul>
+                                                <li>固定导航栏，支持平滑滚动</li>
+                                                <li>主横幅区域展示菜市场主题</li>
+                                                <li>产品分类展示（蔬菜、水果、肉类、海鲜）</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 媒体查看器 -->
+                        <div class="media-viewer">
+                            <div class="media-header">
+                                <span class="file-path">/home/ubuntu/smiling_cat.png</span>
+                                <button class="download-btn">下载</button>
+                            </div>
+                            <div class="media-status">
+                                <div class="status-line">CodeSphere 正在使用媒体查看器</div>
+                                <div class="status-line">正在生成图像: /home/ubuntu/smiling_cat.png</div>
+                            </div>
+                            <div class="media-content">
+                                <div class="media-placeholder">
+                                    <i class="fas fa-image"></i>
+                                    <p>图片预览区域</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chat-input-container">
+                        <div class="chat-input-wrapper">
+                            <textarea 
+                                id="chatInput" 
+                                class="chat-input" 
+                                placeholder="请输入,Enter键发送,Shift+Enter键换行"
+                                rows="1"
+                            ></textarea>
+                            <div class="chat-input-controls">
+                                <div class="model-selector">
+                                    <select id="modelSelect" class="model-dropdown">
+                                        <option value="deepseek">DeepSeek</option>
+                                        <option value="claude">Claude</option>
+                                        <option value="gpt">GPT</option>
+                                    </select>
+                                </div>
+                                <div class="chat-actions">
+                                    <button class="chat-action-btn" title="发送">
+                                        <i class="fas fa-arrow-up"></i>
+                                    </button>
+                                    <button class="chat-action-btn" title="撤销">
+                                        <i class="fas fa-undo"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 计费方案 -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2 id="pricing-title">计费方案</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">推荐选择</div>
+                    <div class="pricing-header">
+                        <h3 id="pricing1-title">免费版</h3>
+                        <div class="price" id="pricing1-price">$0</div>
+                    </div>
+                    <div class="pricing-description">
+                        最适合个人项目与上手体验
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> <span>并发项目数量上限: <strong>25</strong></span></li>
+                        <li><i class="fas fa-check"></i> <span>每个项目的磁盘空间上限: <strong>10 GB</strong></span></li>
+                        <li><i class="fas fa-check"></i> <span>每个项目的CPU上限: <strong>2 vCPU</strong></span></li>
+                        <li><i class="fas fa-check"></i> <span>每个项目的内存上限: <strong>512 MB</strong></span></li>
+                    </ul>
+                    <button class="btn-primary" id="get-started-btn">免费开始</button>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3 id="pricing2-title">专业版</h3>
+                        <div class="price" id="pricing2-price">$9.9<span class="price-period">/月</span></div>
+                        <div class="price-note">+ 使用成本</div>
+                    </div>
+                    <div class="pricing-description">
+                        解锁全部潜能,满足专业开发与生产环境需求
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> <span>并发项目数量上限: <strong>50</strong></span></li>
+                        <li><i class="fas fa-check"></i> <span>每个项目的默认磁盘空间上限: <strong>20GB</strong></span></li>
+                        <li><i class="fas fa-check"></i> <span>每个项目的默认CPU上限: <strong>4 vCPU</strong></span></li>
+                        <li><i class="fas fa-check"></i> <span>每个项目的默认内存上限: <strong>4 GB</strong></span></li>
+                        <li><i class="fas fa-check"></i> <span>自定义CPU/内存资源: <strong>支持扩展至8vCPU/8GB内存</strong></span></li>
+                    </ul>
+                    <button class="btn-primary" id="learn-more-btn">立即订阅</button>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3 id="pricing3-title">企业版</h3>
+                        <div class="price" id="pricing3-price">定制价格</div>
+                    </div>
+                    <div class="pricing-description">
+                        专为规模化、控制和企业级可靠性而设计
+                    </div>
+                    <div class="enterprise-content">
+                        <p>联系我们获取定制化解决方案</p>
+                    </div>
+                    <button class="btn-primary" id="contact-sales-btn">联系我们</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4 id="footer-product-title">Product</h4>
+                    <p>基于原生 Claude Code 的云端代码助手</p>
+                </div>
+                <div class="footer-section">
+                    <h4 id="footer-solutions-title">解决方案</h4>
+                    <ul>
+                        <li><a href="#use-cases" id="footer-use-cases">Use Cases</a></li>
+                        <li><a href="#pricing" id="footer-pricing">Pricing</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 id="footer-support-title">Support</h4>
+                    <ul>
+                        <li><a href="#" id="footer-help">Help Docs</a></li>
+                        <li><a href="#" id="footer-tech">Tech Support</a></li>
+                        <li><a href="#" id="footer-contact">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 CodeSphere. 保留所有权利。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    
+    <!-- Login/Register Modal -->
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAuthModal()">&times;</span>
+            
+            <!-- Login Form -->
+            <div id="loginForm" class="auth-form">
+                <h2 id="login-title">Login to CodeSphere</h2>
+                <p id="login-subtitle">Welcome back! Please enter your details.</p>
+                
+                <form onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label for="loginEmail" id="email-label">Email</label>
+                        <input type="email" id="loginEmail" required placeholder="Enter your email">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="loginPassword" id="password-label">Password</label>
+                        <input type="password" id="loginPassword" required placeholder="Enter your password">
+                    </div>
+                    
+                    <div class="form-options">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="rememberMe">
+                            <span id="remember-text">Remember me</span>
+                        </label>
+                        <a href="#" id="forgot-password">Forgot password?</a>
+                    </div>
+                    
+                    <button type="submit" class="btn-primary" id="login-btn">Login</button>
+                </form>
+                
+                <div class="divider">
+                    <span id="or-text">or</span>
+                </div>
+                
+                <button class="btn-google" onclick="handleGoogleLogin()">
+                    <i class="fab fa-google"></i>
+                    <span id="google-login-text">Continue with Google</span>
+                </button>
+                
+                <p class="auth-switch">
+                    <span id="no-account-text">Don't have an account?</span>
+                    <a href="#" onclick="showRegisterForm()" id="signup-link">Sign up</a>
+                </p>
+            </div>
+            
+            <!-- Register Form -->
+            <div id="registerForm" class="auth-form" style="display: none;">
+                <h2 id="register-title">Create Account</h2>
+                <p id="register-subtitle">Join CodeSphere and start coding in the cloud!</p>
+                
+                <form onsubmit="handleRegister(event)">
+                    <div class="form-group">
+                        <label for="registerName" id="name-label">Full Name</label>
+                        <input type="text" id="registerName" required placeholder="Enter your full name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="registerEmail" id="reg-email-label">Email</label>
+                        <input type="email" id="registerEmail" required placeholder="Enter your email">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="registerPassword" id="reg-password-label">Password</label>
+                        <input type="password" id="registerPassword" required placeholder="Create a password">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="confirmPassword" id="confirm-label">Confirm Password</label>
+                        <input type="password" id="confirmPassword" required placeholder="Confirm your password">
+                    </div>
+                    
+                    <div class="form-options">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="agreeTerms" required>
+                            <span id="agree-text">I agree to the <a href="#" id="terms-link">Terms of Service</a> and <a href="#" id="privacy-link">Privacy Policy</a></span>
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="btn-primary" id="register-btn">Create Account</button>
+                </form>
+                
+                <div class="divider">
+                    <span id="or-reg-text">or</span>
+                </div>
+                
+                <button class="btn-google" onclick="handleGoogleRegister()">
+                    <i class="fab fa-google"></i>
+                    <span id="google-register-text">Sign up with Google</span>
+                </button>
+                
+                <p class="auth-switch">
+                    <span id="have-account-text">Already have an account?</span>
+                    <a href="#" onclick="showLoginForm()" id="login-link">Log in</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 
